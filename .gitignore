@@ -35,9 +35,11 @@ hs_err_pid*
 
 HELP.md
 target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
+
+# mvn files
+.mvn/wrapper/*
+mvnw.cmd
+mvnw
 
 ### STS ###
 .apt_generated
