@@ -15,4 +15,11 @@ public class LoginController
     {
         return "login";
     }
+
+
+    @GetMapping("/dashboard")
+    public String getDashboardView()
+    {
+        return "dashboard";
+    }
 }
