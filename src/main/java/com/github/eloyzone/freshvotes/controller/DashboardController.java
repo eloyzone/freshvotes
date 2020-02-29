@@ -1,4 +1,4 @@
-package com.github.eloyzone.freshvotes;
+package com.github.eloyzone.freshvotes.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
