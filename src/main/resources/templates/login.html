@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Login Page</title>
+        <title>FreshVotes Login</title>
     </head>
     <body>
-        <form action="${LoginProcessingUrl" method="post">
+        <form action="" method="post">
             <fieldset>
                 <legend>Please Login</legend>
                 <div th:if="${param.error != null}">
+                    Failed to login.
                     <div th:if="${SPRING_SECURITY_LAST_EXCEPTION != null}">
                         Reason: <span th:text="${SPRING_SECURITY_LAST_EXCEPTION.message}"></span>
                     </div>
@@ -24,10 +23,6 @@
                 <p>
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password"/>
-                </p>
-                <p>
-                    <label for="remember-me">Remember Me?</label>
-                    <input type="checkbox" id="remember-me" name="remember-me"/>
                 </p>
                 <div>
                     <button type="submit" class="btn">Log in</button>
