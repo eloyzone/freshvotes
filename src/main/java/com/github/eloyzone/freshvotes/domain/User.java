@@ -1,10 +1,10 @@
 package com.github.eloyzone.freshvotes.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.github.eloyzone.freshvotes.security.Authority;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Eloy 'Elyas' Hadizadeh Tasbiti
@@ -20,6 +20,9 @@ public class User
     private String username;
     private String password;
     private String name;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<Authority> authorities = new HashSet<>();
+
 
     public Long getId()
     {
@@ -59,5 +62,15 @@ public class User
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    public Set<Authority> getAuthorities()
+    {
+        return authorities;
+    }
+
+    public void setAuthorities(Set<Authority> authorities)
+    {
+        this.authorities = authorities;
     }
 }
