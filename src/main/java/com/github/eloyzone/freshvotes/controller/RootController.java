@@ -5,14 +5,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * @author Eloy 'Elyas' Hadizadeh Tasbiti
- * Created in 2/26/20, 8:16 PM.
+ * Created in 3/1/20, 12:18 PM.
  */
 @Controller
-public class LoginController
+public class RootController
 {
-    @GetMapping("/login")
-    public String getLoginView()
+    //    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @GetMapping("/")
+    public String getRootView()
     {
-        return "login";
+        return "index";
     }
 }

@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class DashboardController
 {
-
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-    @GetMapping("/")
-    public String getRootView()
+    @GetMapping("/dashboard")
+    public String getDashboardView()
     {
-        return "index";
+        return "dashboard";
     }
 }
