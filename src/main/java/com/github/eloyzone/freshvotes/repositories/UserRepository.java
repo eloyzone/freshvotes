@@ -9,5 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface UserRepository extends JpaRepository<User, Long>
 {
+    //todo: change code to optional version
     User findByUsername(String username);
 }

@@ -1,9 +1,6 @@
 package com.github.eloyzone.freshvotes.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author Eloy 'Elyas' Hadizadeh Tasbiti
@@ -18,6 +15,8 @@ public class Feature
     private String title;
     private String description;
     private String status;
+    @ManyToOne
+    private Product product;
 
     public Long getId()
     {
@@ -57,5 +56,15 @@ public class Feature
     public void setStatus(String status)
     {
         this.status = status;
+    }
+
+    public Product getProduct()
+    {
+        return product;
+    }
+
+    public void setProduct(Product product)
+    {
+        this.product = product;
     }
 }
