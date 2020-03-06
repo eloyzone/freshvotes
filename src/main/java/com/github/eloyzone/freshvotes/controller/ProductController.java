@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -26,12 +27,6 @@ public class ProductController
 {
     @Autowired
     private ProductRepository productRepository;
-
-    @GetMapping("/products")
-    public String getProducts(ModelMap modelMap)
-    {
-        return "product";
-    }
 
     @GetMapping("/products/{productId}")
     public String getProduct(@PathVariable Long productId, ModelMap modelMap, HttpServletResponse httpServletResponse) throws IOException
