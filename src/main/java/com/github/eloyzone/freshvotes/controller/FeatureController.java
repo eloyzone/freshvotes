@@ -36,13 +36,14 @@ public class FeatureController
     }
 
     @GetMapping("{featureId}")
-    public String getFeature(@PathVariable Long productId, @PathVariable Long featureId, ModelMap modelMap)
+    public String getFeature(@AuthenticationPrincipal User user, @PathVariable Long productId, @PathVariable Long featureId, ModelMap modelMap)
     {
         Optional<Feature> featureOptional = featureService.findById(featureId);
         if(featureOptional.isPresent())
         {
             modelMap.put("feature", featureOptional.get());
         }
+        modelMap.put("user", user);
         return "feature";
     }
 
