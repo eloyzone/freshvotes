@@ -2,6 +2,7 @@ package com.github.eloyzone.freshvotes.service;
 
 import com.github.eloyzone.freshvotes.domain.Feature;
 import com.github.eloyzone.freshvotes.domain.Product;
+import com.github.eloyzone.freshvotes.domain.User;
 import com.github.eloyzone.freshvotes.repositories.FeatureRepository;
 import com.github.eloyzone.freshvotes.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class FeatureService
     @Autowired
     private FeatureRepository featureRepository;
 
-    public Feature createFeature(Long productId)
+    public Feature createFeature(User user, Long productId)
     {
         Feature feature = new Feature();
 
@@ -33,7 +34,10 @@ public class FeatureService
             feature.setProduct(product);
             product.getFeatures().add(feature);
 
+            feature.setUser(user);
             feature.setStatus("Pending Review");
+
+            user.getFeatures().add(feature);
 
             featureRepository.save(feature);
             return feature;
@@ -41,7 +45,7 @@ public class FeatureService
         return feature;
     }
 
-    public Feature save(Feature feature)
+    public Feature save(User user,  Feature feature)
     {
         return featureRepository.save(feature);
     }

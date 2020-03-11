@@ -1,8 +1,10 @@
 package com.github.eloyzone.freshvotes.controller;
 
 import com.github.eloyzone.freshvotes.domain.Feature;
+import com.github.eloyzone.freshvotes.domain.User;
 import com.github.eloyzone.freshvotes.service.FeatureService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +28,9 @@ public class FeatureController
     private FeatureService featureService;
 
     @PostMapping("") // this maps to "/products/{productId}/features"
-    public String createFeature(@PathVariable Long productId)
+    public String createFeature(@AuthenticationPrincipal User user, @PathVariable Long productId)
     {
-        Feature feature = featureService.createFeature(productId);
+        Feature feature = featureService.createFeature(user, productId);
 
         return "redirect:/products/"+productId+"/features/"+feature.getId();
     }
@@ -45,9 +47,9 @@ public class FeatureController
     }
 
     @PostMapping("{featureId}")
-    public String updateFeature(@PathVariable Long productId, @PathVariable Long featureId, Feature feature)
+    public String updateFeature(@AuthenticationPrincipal User user, @PathVariable Long productId, @PathVariable Long featureId, Feature feature)
     {
-        feature = featureService.save(feature);
+        feature = featureService.save(user, feature);
         try
         {
             String encodedProductName = URLEncoder.encode(feature.getProduct().getName(), "UTF-8");
