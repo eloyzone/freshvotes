@@ -23,6 +23,9 @@ public interface ProductRepository extends JpaRepository<Product, Long>
             " where p.id = :id")
     Optional<Product> findByIdWithUser(@Param("id") Long productId);
 
+
+    Optional<Product> findByName(String name);
+
     // select * from product where user = :user and name = :name;
 //    List<Product> findByUserAndName(User user, String name);
 }

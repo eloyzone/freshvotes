@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+    <head>
+        <script th:replace="fragments/header :: headerElement"/>
+        <title th:text="${product.name}">Product</title>
+    </head>
+    <body>
+        <div th:replace="fragments/header :: header"/>
+
+        <div class="container mt-4" th:if="${product != null}">
+            <h1 th:text="${product.name}">Product</h1>
+
+            <div th:each="feature : ${product.features}">
+                <a href="@{/products/{productId}/features/{featureId}(productId=${product.id}, featureId=${feature.id})}" th:text="feature.title"></a>
+            </div>
+
+            <form th:action="@{/products/{productId}/features(productId=${product.id})}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+                <div class="mt-5">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">create Feature Request</button>
+                </div>
+
+            </form>
+
+        </div>
+        <div th:replace="fragments/header :: requiredJavaScriptLibs"/>
+    </body>
+</html>
